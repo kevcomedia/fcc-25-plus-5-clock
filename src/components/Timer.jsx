@@ -13,7 +13,7 @@ const Timer = ({ className, label, seconds }) => {
       <p className="text-center" id="timer-label">
         {label}
       </p>
-      <p className="text-center text-5xl font-normal mb-4">
+      <p className="text-center text-5xl font-normal mb-4" id="time-left">
         {secondsToReadableTime(seconds)}
       </p>
 
