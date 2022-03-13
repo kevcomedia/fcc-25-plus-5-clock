@@ -1,21 +1,26 @@
+import { useState } from 'react'
 import Timer from './components/Timer'
 import TimerControl from './components/TimerControl'
 
 const App = () => {
+  const [timeLeft, setTimeLeft] = useState(25 * 60 /* seconds */)
+  const [breakLength, setBreakLength] = useState(5 /* minutes */)
+  const [sessionLength, setSessionLength] = useState(25 /* minutes */)
+
   return (
     <div className="m-16 grid grid-cols-2 grid-rows-2 max-w-md text-white font-bold bg-teal-500 border-8 border-teal-500 rounded-md drop-shadow-xl">
-      <Timer className="row-span-2" label="Session" seconds={25 * 60} />
+      <Timer className="row-span-2" label="Session" seconds={timeLeft} />
       <TimerControl
         className="self-center"
         name="break"
         label="Break Length"
-        value={5}
+        value={breakLength}
       />
       <TimerControl
         className="self-center"
         name="session"
         label="Session Length"
-        value={25}
+        value={sessionLength}
       />
     </div>
   )
