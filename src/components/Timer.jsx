@@ -1,8 +1,10 @@
 import Button from './Button'
 
-// TODO
 const secondsToReadableTime = (seconds) => {
-  return '25:00'
+  const minutes = `${Math.floor(seconds / 60)}`.padStart(2, '0')
+  const remainder = `${seconds % 60}`.padStart(2, '0')
+
+  return `${minutes}:${remainder}`
 }
 
 const Timer = ({ className, label, seconds }) => {
