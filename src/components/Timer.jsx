@@ -7,7 +7,14 @@ const secondsToReadableTime = (seconds) => {
   return `${minutes}:${remainder}`
 }
 
-const Timer = ({ className, label, seconds, isTimerRunning, onStartStop }) => {
+const Timer = ({
+  className,
+  label,
+  seconds,
+  isTimerRunning,
+  onStartStop,
+  onReset,
+}) => {
   return (
     <div className={`${className} row-span-2 bg-teal-400 py-8`}>
       <p className="text-center" id="timer-label">
@@ -21,7 +28,9 @@ const Timer = ({ className, label, seconds, isTimerRunning, onStartStop }) => {
         <Button className="mr-2" id="start_stop" onClick={onStartStop}>
           {isTimerRunning ? 'Stop' : 'Start'}
         </Button>
-        <Button id="reset">Reset</Button>
+        <Button id="reset" onClick={onReset}>
+          Reset
+        </Button>
       </div>
     </div>
   )

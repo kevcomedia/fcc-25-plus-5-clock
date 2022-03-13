@@ -2,12 +2,20 @@ import { useState, useEffect } from 'react'
 import Timer from './components/Timer'
 import TimerControl from './components/TimerControl'
 
+const initialValues = {
+  timeLeft: 25 * 60 /* seconds */,
+  breakLength: 5 /* minutes */,
+  sessionLength: 25 /* minutes */,
+}
+
 const App = () => {
   const [isTimerRunning, setTimerRunning] = useState(false)
   const [timerType, setTimerType] = useState('Session')
-  const [timeLeft, setTimeLeft] = useState(25 * 60 /* seconds */)
-  const [breakLength, setBreakLength] = useState(5 /* minutes */)
-  const [sessionLength, setSessionLength] = useState(25 /* minutes */)
+  const [timeLeft, setTimeLeft] = useState(initialValues.timeLeft)
+  const [breakLength, setBreakLength] = useState(initialValues.breakLength)
+  const [sessionLength, setSessionLength] = useState(
+    initialValues.sessionLength
+  )
 
   useEffect(() => {
     if (timeLeft === 0) {
@@ -36,6 +44,14 @@ const App = () => {
     setTimerRunning(!isTimerRunning)
   }
 
+  const handleReset = () => {
+    setTimerRunning(false)
+    setTimerType('Session')
+    setTimeLeft(initialValues.timeLeft)
+    setBreakLength(initialValues.breakLength)
+    setSessionLength(initialValues.sessionLength)
+  }
+
   return (
     <div className="m-16 grid grid-cols-2 grid-rows-2 max-w-md text-white font-bold bg-teal-500 border-8 border-teal-500 rounded-md drop-shadow-xl">
       <Timer
@@ -44,6 +60,7 @@ const App = () => {
         seconds={timeLeft}
         isTimerRunning={isTimerRunning}
         onStartStop={handleTimerRunningToggle}
+        onReset={handleReset}
       />
       <TimerControl
         className="self-center"
