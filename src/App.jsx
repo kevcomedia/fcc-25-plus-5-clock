@@ -8,9 +8,14 @@ const initialValues = {
   sessionLength: 25 /* minutes */,
 }
 
+const timerTypes = {
+  break: 'Break',
+  session: 'Session',
+}
+
 const App = () => {
   const [isTimerRunning, setTimerRunning] = useState(false)
-  const [timerType, setTimerType] = useState('Session')
+  const [timerType, setTimerType] = useState(timerTypes.session)
   const [timeLeft, setTimeLeft] = useState(initialValues.timeLeft)
   const [breakLength, setBreakLength] = useState(initialValues.breakLength)
   const [sessionLength, setSessionLength] = useState(
@@ -19,12 +24,12 @@ const App = () => {
 
   useEffect(() => {
     if (timeLeft === 0) {
-      if (timerType === 'Session') {
+      if (timerType === timerTypes.session) {
         setTimeLeft(breakLength * 60)
-        setTimerType('Break')
+        setTimerType(timerTypes.break)
       } else {
         setTimeLeft(sessionLength * 60)
-        setTimerType('Session')
+        setTimerType(timerTypes.session)
       }
     }
   }, [timeLeft, timerType, breakLength, sessionLength])
@@ -41,7 +46,7 @@ const App = () => {
   }, [isTimerRunning])
 
   useEffect(() => {
-    if (timerType === 'Break') {
+    if (timerType === timerTypes.break) {
       setTimeLeft(breakLength * 60)
     } else {
       setTimeLeft(sessionLength * 60)
@@ -58,7 +63,7 @@ const App = () => {
 
   const handleReset = () => {
     setTimerRunning(false)
-    setTimerType('Session')
+    setTimerType(timerTypes.session)
     setTimeLeft(initialValues.timeLeft)
     setBreakLength(initialValues.breakLength)
     setSessionLength(initialValues.sessionLength)
