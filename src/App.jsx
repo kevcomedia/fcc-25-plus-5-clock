@@ -40,29 +40,41 @@ const App = () => {
     }
   }, [isTimerRunning])
 
+  useEffect(() => {
+    if (timerType === 'Break') {
+      setTimeLeft(breakLength * 60)
+    } else {
+      setTimeLeft(sessionLength * 60)
+    }
+  }, [timerType, breakLength, sessionLength])
+
   const handleTimerRunningToggle = () => {
     setTimerRunning(!isTimerRunning)
   }
 
   const handleBreakDecrement = () => {
+    if (isTimerRunning) return
     if (breakLength > 1) {
       setBreakLength(breakLength - 1)
     }
   }
 
   const handleBreakIncrement = () => {
+    if (isTimerRunning) return
     if (breakLength < 60) {
       setBreakLength(breakLength + 1)
     }
   }
 
   const handleSessionDecrement = () => {
+    if (isTimerRunning) return
     if (sessionLength > 1) {
       setSessionLength(sessionLength - 1)
     }
   }
 
   const handleSessionIncrement = () => {
+    if (isTimerRunning) return
     if (sessionLength < 60) {
       setSessionLength(sessionLength + 1)
     }
