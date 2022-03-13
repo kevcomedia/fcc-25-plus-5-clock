@@ -38,7 +38,7 @@ const App = () => {
     if (isTimerRunning) {
       const intervalId = setInterval(() => {
         setTimeLeft((v) => v - 1)
-      }, 200) // TODO change temporary value back to 1000
+      }, 1000)
       return () => {
         clearInterval(intervalId)
       }
