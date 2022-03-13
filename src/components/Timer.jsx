@@ -10,14 +10,18 @@ const secondsToReadableTime = (seconds) => {
 const Timer = ({ className, label, seconds }) => {
   return (
     <div className={`${className} row-span-2 bg-teal-400 py-8`}>
-      <p className="text-center">{label}</p>
+      <p className="text-center" id="timer-label">
+        {label}
+      </p>
       <p className="text-center text-5xl font-normal mb-4">
         {secondsToReadableTime(seconds)}
       </p>
 
       <div className="flex justify-center">
-        <Button className="mr-2">Start</Button>
-        <Button>Reset</Button>
+        <Button className="mr-2" id="start_stop">
+          Start
+        </Button>
+        <Button id="reset">Reset</Button>
       </div>
     </div>
   )
