@@ -64,8 +64,14 @@ const App = () => {
     setSessionLength(initialValues.sessionLength)
   }
 
+  const colorClasses = isTimerRunning
+    ? 'bg-rose-500 border-rose-500'
+    : 'bg-teal-500 border-teal-500'
+
   return (
-    <div className="m-16 grid grid-cols-2 grid-rows-2 max-w-md text-white font-bold bg-teal-500 border-8 border-teal-500 rounded-md drop-shadow-xl">
+    <div
+      className={`${colorClasses} m-16 grid grid-cols-2 grid-rows-2 max-w-md text-white font-bold border-8 rounded-md drop-shadow-xl`}
+    >
       <Timer
         className="row-span-2"
         label={timerType}

@@ -15,8 +15,10 @@ const Timer = ({
   onStartStop,
   onReset,
 }) => {
+  const colorClasses = isTimerRunning ? 'bg-rose-400' : 'bg-teal-400'
+
   return (
-    <div className={`${className} row-span-2 bg-teal-400 py-8`}>
+    <div className={`${className} ${colorClasses} row-span-2 py-8`}>
       <p className="text-center" id="timer-label">
         {label}
       </p>
