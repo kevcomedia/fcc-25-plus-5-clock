@@ -52,33 +52,9 @@ const App = () => {
     setTimerRunning(!isTimerRunning)
   }
 
-  const handleBreakDecrement = () => {
-    if (isTimerRunning) return
-    if (breakLength > 1) {
-      setBreakLength(breakLength - 1)
-    }
-  }
-
-  const handleBreakIncrement = () => {
-    if (isTimerRunning) return
-    if (breakLength < 60) {
-      setBreakLength(breakLength + 1)
-    }
-  }
-
-  const handleSessionDecrement = () => {
-    if (isTimerRunning) return
-    if (sessionLength > 1) {
-      setSessionLength(sessionLength - 1)
-    }
-  }
-
-  const handleSessionIncrement = () => {
-    if (isTimerRunning) return
-    if (sessionLength < 60) {
-      setSessionLength(sessionLength + 1)
-    }
-  }
+  const changeLength = (fn) => (setter) => () => !isTimerRunning && setter(fn)
+  const decrement = changeLength((v) => (v > 1 ? v - 1 : v))
+  const increment = changeLength((v) => (v < 60 ? v + 1 : v))
 
   const handleReset = () => {
     setTimerRunning(false)
@@ -103,16 +79,16 @@ const App = () => {
         name="break"
         label="Break Length"
         value={breakLength}
-        onDecrement={handleBreakDecrement}
-        onIncrement={handleBreakIncrement}
+        onDecrement={decrement(setBreakLength)}
+        onIncrement={increment(setBreakLength)}
       />
       <TimerControl
         className="self-center"
         name="session"
         label="Session Length"
         value={sessionLength}
-        onDecrement={handleSessionDecrement}
-        onIncrement={handleSessionIncrement}
+        onDecrement={decrement(setSessionLength)}
+        onIncrement={increment(setSessionLength)}
       />
     </div>
   )
