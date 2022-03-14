@@ -1,3 +1,8 @@
+import {
+  faPlay,
+  faPause,
+  faRotateLeft,
+} from '@fortawesome/free-solid-svg-icons'
 import Button from './Button'
 
 const secondsToReadableTime = (seconds) => {
@@ -27,12 +32,19 @@ const Timer = ({
       </p>
 
       <div className="flex justify-center">
-        <Button className="mr-2" id="start_stop" onClick={onStartStop}>
-          {isTimerRunning ? 'Stop' : 'Start'}
-        </Button>
-        <Button id="reset" onClick={onReset}>
-          Reset
-        </Button>
+        <Button
+          className="mr-2"
+          id="start_stop"
+          label={isTimerRunning ? 'Stop' : 'Start'}
+          icon={isTimerRunning ? faPause : faPlay}
+          onClick={onStartStop}
+        />
+        <Button
+          id="reset"
+          label="Reset"
+          icon={faRotateLeft}
+          onClick={onReset}
+        />
       </div>
     </div>
   )

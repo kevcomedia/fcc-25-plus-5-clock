@@ -1,3 +1,4 @@
+import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 import Button from './Button'
 
 const TimerControl = ({
@@ -15,18 +16,21 @@ const TimerControl = ({
       </p>
       <div className="flex justify-center items-center">
         <Button
-          className="mr-4 p-2"
+          className="mr-4"
           id={`${name}-decrement`}
+          label="Decrease"
+          icon={faMinus}
           onClick={onDecrement}
-        >
-          -
-        </Button>
+        />
         <p className="mr-4 px-2" id={`${name}-length`}>
           {value}
         </p>
-        <Button className="p-2" id={`${name}-increment`} onClick={onIncrement}>
-          +
-        </Button>
+        <Button
+          id={`${name}-increment`}
+          label="Increase"
+          icon={faPlus}
+          onClick={onIncrement}
+        />
       </div>
     </div>
   )
