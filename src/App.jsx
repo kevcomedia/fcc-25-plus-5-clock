@@ -73,6 +73,11 @@ const App = () => {
     setTimeLeft(initialValues.timeLeft)
     setBreakLength(initialValues.breakLength)
     setSessionLength(initialValues.sessionLength)
+
+    if (audioRef.current) {
+      audioRef.current.pause()
+      audioRef.current.currentTime = 0
+    }
   }
 
   const colorClasses = isTimerRunning
