@@ -80,7 +80,7 @@ const App = () => {
 
   return (
     <div
-      className={`${colorClasses} m-16 grid grid-cols-2 grid-rows-2 max-w-md text-white font-bold border-8 rounded-md drop-shadow-xl`}
+      className={`${colorClasses} grid grid-cols-2 grid-rows-2 max-w-md w-full text-white font-bold border-8 rounded-md drop-shadow-xl`}
     >
       <Timer
         className="row-span-2"
