@@ -1,6 +1,7 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import Timer from './components/Timer'
 import TimerControl from './components/TimerControl'
+import useAudio from './hooks/useAudio'
 
 const initialValues = {
   timeLeft: 25 * 60 /* seconds */,
@@ -22,14 +23,10 @@ const App = () => {
     initialValues.sessionLength
   )
 
-  const audioRef = useRef(null)
+  const { audioRef, resetAudio } = useAudio(timeLeft)
 
   useEffect(() => {
     if (timeLeft === 0) {
-      if (audioRef.current) {
-        audioRef.current.play()
-      }
-
       if (timerType === timerTypes.session) {
         setTimeLeft(breakLength * 60)
         setTimerType(timerTypes.break)
@@ -74,10 +71,7 @@ const App = () => {
     setBreakLength(initialValues.breakLength)
     setSessionLength(initialValues.sessionLength)
 
-    if (audioRef.current) {
-      audioRef.current.pause()
-      audioRef.current.currentTime = 0
-    }
+    resetAudio()
   }
 
   const colorClasses = isTimerRunning
