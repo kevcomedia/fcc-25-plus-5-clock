@@ -8,6 +8,7 @@ const Button = ({ className, label, icon, ...props }) => {
         fixedWidth={true}
         title={label}
         aria-hidden="true"
+        size="lg"
       />
       <span className="sr-only">{label}</span>
     </button>
