@@ -16,7 +16,7 @@ const TimerControl = ({
       </p>
       <div className="flex justify-center items-center">
         <Button
-          className="mr-4 p-2"
+          className="mr-4"
           id={`${name}-decrement`}
           label="Decrease"
           icon={faMinus}
@@ -26,7 +26,6 @@ const TimerControl = ({
           {value}
         </p>
         <Button
-          className="p-2"
           id={`${name}-increment`}
           label="Increase"
           icon={faPlus}
