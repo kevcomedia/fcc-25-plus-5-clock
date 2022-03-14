@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import Timer from './components/Timer'
 import TimerControl from './components/TimerControl'
+import useAudio from './hooks/useAudio'
 
 const initialValues = {
   timeLeft: 25 * 60 /* seconds */,
@@ -21,6 +22,8 @@ const App = () => {
   const [sessionLength, setSessionLength] = useState(
     initialValues.sessionLength
   )
+
+  const { audioRef, resetAudio } = useAudio(timeLeft)
 
   useEffect(() => {
     if (timeLeft === 0) {
@@ -67,6 +70,8 @@ const App = () => {
     setTimeLeft(initialValues.timeLeft)
     setBreakLength(initialValues.breakLength)
     setSessionLength(initialValues.sessionLength)
+
+    resetAudio()
   }
 
   const colorClasses = isTimerRunning
@@ -100,6 +105,11 @@ const App = () => {
         value={sessionLength}
         onDecrement={decrement(setSessionLength)}
         onIncrement={increment(setSessionLength)}
+      />
+      <audio
+        id="beep"
+        src="https://www.peter-weinberg.com/files/1014/8073/6015/BeepSound.wav"
+        ref={audioRef}
       />
     </div>
   )
