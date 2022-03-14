@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Timer from './components/Timer'
 import TimerControl from './components/TimerControl'
 
@@ -22,8 +22,14 @@ const App = () => {
     initialValues.sessionLength
   )
 
+  const audioRef = useRef(null)
+
   useEffect(() => {
     if (timeLeft === 0) {
+      if (audioRef.current) {
+        audioRef.current.play()
+      }
+
       if (timerType === timerTypes.session) {
         setTimeLeft(breakLength * 60)
         setTimerType(timerTypes.break)
@@ -100,6 +106,11 @@ const App = () => {
         value={sessionLength}
         onDecrement={decrement(setSessionLength)}
         onIncrement={increment(setSessionLength)}
+      />
+      <audio
+        id="beep"
+        src="https://www.peter-weinberg.com/files/1014/8073/6015/BeepSound.wav"
+        ref={audioRef}
       />
     </div>
   )
